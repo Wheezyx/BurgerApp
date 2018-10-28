@@ -1,4 +1,4 @@
-package burgerapp.controller;
+package burgerapp.components;
 
 import burgerapp.components.burger.Burger;
 import burgerapp.components.burger.BurgerRepository;

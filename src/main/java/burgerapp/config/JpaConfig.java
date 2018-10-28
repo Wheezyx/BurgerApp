@@ -25,7 +25,7 @@ public class JpaConfig
     {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         Map<String, String> properties = new HashMap<>();
-        properties.put("hibernate.hbm2ddl.auto", "create");
+        properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("spring.jpa.database-platform","org.hibernate.dialect.H2Dialect");
         emf.setPersistenceUnitName("spring-jpa-pu");
         emf.setJpaPropertyMap(properties);
@@ -48,7 +48,7 @@ public class JpaConfig
     public DataSource createDS()
     {
         BasicDataSource ds = new BasicDataSource();
-        ds.setUrl("jdbc:h2:tcp://localhost:9092/mem:test;DB_CLOSE_DELAY=-1;MODE=MySQL");
+        ds.setUrl("jdbc:h2:tcp://localhost:9092/~/test");
         ds.setUsername("sa");
         ds.setPassword("");
         ds.setDriverClassName("org.h2.Driver");

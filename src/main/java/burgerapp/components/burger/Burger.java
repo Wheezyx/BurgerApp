@@ -20,6 +20,7 @@ public class Burger implements Serializable
     private Long Id;
     private Double price;
     private String name;
+    @Column(name = "short_description")
     private String shortDescription;
     @Column(length = 512)
     private String description;
