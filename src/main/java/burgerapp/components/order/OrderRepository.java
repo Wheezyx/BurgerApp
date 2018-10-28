@@ -1,5 +1,9 @@
 package burgerapp.components.order;
 
-public class OrderRepository
+import burgerapp.components.AbstractJpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class OrderRepository extends AbstractJpaRepository<Order>
 {
 }

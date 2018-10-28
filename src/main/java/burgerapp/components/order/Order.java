@@ -12,13 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "client_order")
-public class Order
+public class Order implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

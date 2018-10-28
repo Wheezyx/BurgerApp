@@ -1,0 +1,16 @@
+body {
+    background: url('../image/background.jpg') center;
+}
+.jumbotron{
+    background: url('../image/burger_background.gif') center;
+    color: Black;
+    font-size: 25px;
+    font-weight: bold;
+}
+.display-3{
+    font-weight: bold;
+}
+.media-body {
+    margin-left: 10px;
+    color: white;
+}
