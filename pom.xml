@@ -60,6 +60,11 @@
             <artifactId>thymeleaf-spring5</artifactId>
             <version>3.0.10.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.2</version>
+        </dependency>
 
     </dependencies>
 
