@@ -11,6 +11,11 @@ body {
     font-weight: bold;
 }
 .media-body {
-    margin-left: 50%;
     color: white;
+	margin-left: 5px;
+}
+.material-icons {vertical-align:-14%;
+color: white;
+margin-left: 40%;
+font-size: 50px;
 }

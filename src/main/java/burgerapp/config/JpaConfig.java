@@ -27,7 +27,6 @@ public class JpaConfig
         Map<String, String> properties = new HashMap<>();
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("spring.jpa.database-platform","org.hibernate.dialect.H2Dialect");
-        emf.setPersistenceUnitName("spring-jpa-pu");
         emf.setJpaPropertyMap(properties);
         emf.setDataSource(ds);
         emf.setJpaVendorAdapter(adapter);

@@ -24,4 +24,5 @@ public class Burger implements Serializable
     private String shortDescription;
     @Column(length = 512)
     private String description;
+    private String imgUrl;
 }

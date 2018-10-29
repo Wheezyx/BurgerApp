@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Strona główna</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="css/main.css" th:href="@{/templates/css/main.css}" rel="stylesheet">
 </head>
 <body>
@@ -16,10 +17,12 @@
     </div>
     <div th:remove="all-but-first">
         <div class="media col-6 offset-3" th:each="burger: ${burgers}">
-            <i class="fas fa-utensils fa-4x"></i>
+            <i class="material-icons">fastfood</i>
             <div class="media-body">
-                <h5 th:text="|${burger.name}(${burger.price}zł)|">Test</h5>
-                <p th:text="${burger.shortDescription}">Test</p>
+                <a href="#" th:href="@{|/danie/${#strings.replace(burger.name, ' ', '-')}|}">
+                    <h5 th:text="|${burger.name}(${burger.price}zł)|">test test (25zł)</h5>
+                </a>
+                <p th:text="${burger.shortDescription}">test.</p>
             </div>
         </div>
     </div>
