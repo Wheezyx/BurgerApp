@@ -54,6 +54,7 @@ public class WebConfig implements WebMvcConfigurer
         {
             registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/");
         }
+
     }
     
     @Bean

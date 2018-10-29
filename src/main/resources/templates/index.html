@@ -15,6 +15,7 @@
             <p>Witaj w Burgerowni! Zamawiaj, zapłać, odbierz specjalny kod i czekaj na swoje zamówienie!</p>
         </div>
     </div>
+    <a th:href="@{/zamowienie}" class="btn btn-success">Zamówienie</a>
     <div th:remove="all-but-first">
         <div class="media col-6 offset-3" th:each="burger: ${burgers}">
             <i class="material-icons">fastfood</i>
@@ -23,6 +24,8 @@
                     <h5 th:text="|${burger.name}(${burger.price}zł)|">test test (25zł)</h5>
                 </a>
                 <p th:text="${burger.shortDescription}">test.</p>
+                <a href="#" th:href="@{/zamowienie/dodaj(burgerId=${burger.id})}" class="btn btn-success">
+                    Dodaj do zamówienia</a>
             </div>
         </div>
     </div>

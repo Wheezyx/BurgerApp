@@ -10,6 +10,11 @@ import java.util.Optional;
 @Repository
 public class BurgerRepository extends AbstractJpaRepository<Burger>
 {
+    public BurgerRepository()
+    {
+        this.setClazz(Burger.class);
+    }
+    
     public Optional<Burger> findByName(String name)
     {
         TypedQuery<Burger> query = entityManager.createQuery("SELECT b FROM Burger b WHERE b.name LIKE :name", Burger.class);

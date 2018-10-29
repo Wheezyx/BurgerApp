@@ -25,7 +25,7 @@ public class Order implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany
-    private List<Burger> items;
+    private List<Burger> burgers;
     private String client_name;
     private String code;
     @Enumerated(EnumType.STRING)

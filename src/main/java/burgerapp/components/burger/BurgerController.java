@@ -15,7 +15,6 @@ public class BurgerController
     public BurgerController(BurgerRepository burgerRepository)
     {
         this.burgerRepository = burgerRepository;
-        this.burgerRepository.setClazz(Burger.class);
     }
     
     @GetMapping("/danie/{name}")
