@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Komunikat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="css/main.css" th:href="@{/templates/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron home-jumbo">
+        <div class="container text-center text-white jumbo-container">
+            <div th:if="${message}" th:remove="tag">
+                <h1 class="display-3" th:text="${message}"></h1>
+            </div>
+            <a th:href="@{/}">Strona główna</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

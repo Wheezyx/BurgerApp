@@ -1,29 +1,33 @@
 package burgerapp.components.order;
 
 import burgerapp.components.burger.Burger;
-import lombok.Getter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 @Component
 @SessionScope
-@Getter
 public class ClientOrder
 {
-    private Order order;
+    private Order order = new Order();
     
     public ClientOrder()
     {
         clear();
     }
     
-    void addBurger(Burger burger){
+    public Order getOrder()
+    {
+        return order;
+    }
+    
+    void addBurger(Burger burger)
+    {
         order.getBurgers().add(burger);
     }
     
-    private void clear()
+    public void clear()
     {
         order = new Order();
-        order.setStatus(OrderStatus.IN_PROGRESS);
+        order.setStatus(OrderStatus.NEW);
     }
 }

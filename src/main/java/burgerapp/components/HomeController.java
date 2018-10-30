@@ -1,29 +1,31 @@
 package burgerapp.components;
 
 import burgerapp.components.burger.Burger;
-import burgerapp.components.burger.BurgerRepository;
+import burgerapp.components.burger.BurgerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class HomeController
 {
-    private BurgerRepository burgerRepository;
+    private BurgerService burgerService;
     
-    public HomeController(BurgerRepository burgerRepository)
+    @Autowired
+    private HomeController(BurgerService burgerService)
     {
-        this.burgerRepository = burgerRepository;
-        burgerRepository.setClazz(Burger.class);
+        this.burgerService = burgerService;
     }
     
     @GetMapping("/")
     public String home(Model model)
     {
-        List<Burger> burgers = burgerRepository.findAll();
-        model.addAttribute("burgers", burgers);
+        Optional<List<Burger>> burgers = burgerService.getAll();
+        burgers.ifPresent(burs -> model.addAttribute("burgers", burs));
         return "index";
     }
 }

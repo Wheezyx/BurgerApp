@@ -1,6 +1,7 @@
 package burgerapp.components.order;
 
 import burgerapp.components.burger.Burger;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,8 +27,8 @@ public class Order implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany
-    private List<Burger> burgers;
-    private String client_name;
+    private List<Burger> burgers = new ArrayList<>();
+    private String clientName;
     private String code;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;

@@ -2,6 +2,7 @@ package burgerapp.components.burger;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

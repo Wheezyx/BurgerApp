@@ -15,7 +15,7 @@
             <h1 class="text-center" th:text="${burger.name}">TEST</h1>
             <h3 class="text-center" th:text="|Cena ${burger.price}zł|">TEST 25zł</h3>
             <p class="text-justify" th:text="${burger.description}">TEST</p>
-            <a href="#" th:href="@{/zamowienie/dodaj(burgerId=${burger.id})}" class="btn btn-success">
+            <a href="#" th:href="@{/order/add(burgerId=${burger.id})}" class="btn btn-success">
                 Dodaj do zamówienia</a>
         </div>
     </div>

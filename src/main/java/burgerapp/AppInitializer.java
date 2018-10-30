@@ -1,5 +1,6 @@
 package burgerapp;
 
+import burgerapp.config.SecurityConfig;
 import burgerapp.config.WebConfig;
 import org.h2.tools.Server;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -12,7 +13,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     @Override
     protected Class<?>[] getRootConfigClasses()
     {
-        return new Class[0];
+        return new Class[]{SecurityConfig.class};
     }
     
     @Override

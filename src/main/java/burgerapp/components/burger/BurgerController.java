@@ -1,5 +1,6 @@
 package burgerapp.components.burger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,19 +11,19 @@ import java.util.Optional;
 @Controller
 public class BurgerController
 {
-    private BurgerRepository burgerRepository;
+    private BurgerService burgerService;
     
-    public BurgerController(BurgerRepository burgerRepository)
+    @Autowired
+    private BurgerController(BurgerService burgerService)
     {
-        this.burgerRepository = burgerRepository;
+        this.burgerService = burgerService;
     }
     
     @GetMapping("/danie/{name}")
     public String getBurger(@PathVariable String name, Model model)
     {
-        Optional<Burger> burger = burgerRepository.findByName(name.replaceAll("-", " "));
-        burger.ifPresent(bur-> model.addAttribute("burger", bur));
+        Optional<Burger> burger = burgerService.findByName(name.replaceAll("-", " "));
+        burger.ifPresent(bur -> model.addAttribute("burger", bur));
         return burger.map(bur -> "burger").orElse("redirect:/");
     }
-    
 }

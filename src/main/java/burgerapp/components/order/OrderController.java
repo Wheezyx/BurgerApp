@@ -1,10 +1,12 @@
 package burgerapp.components.order;
 
 import burgerapp.components.burger.Burger;
-import burgerapp.components.burger.BurgerRepository;
+import burgerapp.components.burger.BurgerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
@@ -13,17 +15,53 @@ import java.util.Optional;
 public class OrderController
 {
     private ClientOrder clientOrder;
-    private BurgerRepository burgerRepository;
+    private BurgerService burgerService;
+    private OrderService orderService;
     
-    private OrderController(ClientOrder clientOrder, BurgerRepository burgerRepository)
+    @Autowired
+    private OrderController(ClientOrder clientOrder, BurgerService burgerService, OrderService orderService)
     {
         this.clientOrder = clientOrder;
-        this.burgerRepository = burgerRepository;
+        this.burgerService = burgerService;
+        this.orderService = orderService;
     }
     
-    @GetMapping("/zamowienie/dodaj")
-    public String addBurgerToOrder(@RequestParam Long id, Model model){
-        Optional<Burger> burger = burgerRepository.findOne(id);
-        return null;
+    @GetMapping("/order/add")
+    public String addBurgerToOrder(@RequestParam Long burgerId, Model model)
+    {
+        Optional<Burger> burger = burgerService.get(burgerId);
+        burger.ifPresent(clientOrder::addBurger);
+        if(burger.isPresent())
+        {
+            model.addAttribute("message", "Dodano");
+        }
+        else
+        {
+            model.addAttribute("message", "Nie Dodano");
+        }
+        return "message";
+    }
+    
+    @GetMapping("/order")
+    public String getCurrentOrder(Model model)
+    {
+        model.addAttribute("order", clientOrder.getOrder());
+        model.addAttribute("fullAmount", clientOrder
+            .getOrder()
+            .getBurgers().stream()
+            .mapToDouble(Burger::getPrice)
+            .sum());
+        return "order";
+    }
+    
+    @PostMapping("/order/create")
+    public String createOrder(@RequestParam String clientName, Model model)
+    {
+        Order order = clientOrder.getOrder();
+        order.setClientName(clientName);
+        orderService.add(order);
+        clientOrder.clear();
+        model.addAttribute("message", "Twój kod odbioru zamówienia to:" + order.getCode());
+        return "message";
     }
 }
