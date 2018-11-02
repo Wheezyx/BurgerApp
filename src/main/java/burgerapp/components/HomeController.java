@@ -24,6 +24,7 @@ public class HomeController
     @GetMapping("/")
     public String home(Model model)
     {
+		
         Optional<List<Burger>> burgers = burgerService.getAll();
         burgers.ifPresent(burs -> model.addAttribute("burgers", burs));
         return "index";
