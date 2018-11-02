@@ -19,7 +19,7 @@ public class BurgerController
         this.burgerService = burgerService;
     }
     
-    @GetMapping("/danie/{name}")
+    @GetMapping("/burgers/{name}")
     public String getBurger(@PathVariable String name, Model model)
     {
         Optional<Burger> burger = burgerService.findByName(name.replaceAll("-", " "));

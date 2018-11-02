@@ -5,6 +5,8 @@ import burgerapp.components.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,5 +34,11 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
     {
         UUID uuid = UUID.randomUUID();
         return uuid.toString().substring(0, 6);
+    }
+    
+    @Override
+    public Optional<List<Order>> findAllByOrderStatus(OrderStatus status)
+    {
+        return this.orderDao.findAllByOrderStatus(status);
     }
 }
