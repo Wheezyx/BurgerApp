@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Burgerbar</title>
+</head>
+<body>
+<h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
+<div>
+    <form action="#" method="post" th:action="@{/panel/add-burger}" th:object="${formBurger}">
+        <label>
+            <input type="text" th:field="*{name}" placeholder="Name"/><br>
+        </label>
+        <label>
+            <input type="text" th:field="*{price}" placeholder="Price"/><br>
+        </label>
+        <label>
+            <input type="text" th:field="*{shortDescription}" placeholder="Short Desc"/><br>
+        </label>
+        <label>
+            <textarea rows="4" cols="50" th:field="*{description}" placeholder="Long desc"></textarea>
+        </label>
+        <input type="submit" value="Send"/>
+    </form>
+</div>
+</body>
+</html>

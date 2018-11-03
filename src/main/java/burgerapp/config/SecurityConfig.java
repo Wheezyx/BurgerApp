@@ -23,6 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .antMatchers("/**").permitAll()
             .anyRequest().authenticated()
             .and()
-            .formLogin().defaultSuccessUrl("/panel").permitAll();
+            .formLogin().defaultSuccessUrl("/panel").permitAll()
+            .and()
+            .csrf().disable();
     }
 }

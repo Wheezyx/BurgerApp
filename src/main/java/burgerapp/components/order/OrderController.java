@@ -46,11 +46,11 @@ public class OrderController
     public String getCurrentOrder(Model model)
     {
         model.addAttribute("order", clientOrder.getOrder());
-        model.addAttribute("fullAmount", clientOrder
-            .getOrder()
-            .getBurgers().stream()
-            .mapToDouble(Burger::getPrice)
-            .sum());
+        double orderPrice = clientOrder.getOrder()
+                                       .getBurgers().stream()
+                                       .mapToDouble(Burger::getPrice)
+                                       .sum();
+        model.addAttribute("fullAmount", orderPrice);
         return "order";
     }
     

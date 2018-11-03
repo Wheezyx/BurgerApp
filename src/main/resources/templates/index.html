@@ -26,7 +26,7 @@
             <div class="media col-6 offset-3" th:each="burger:${burgers}">
                 <i class="material-icons">fastfood</i>
                 <div class="media-body">
-                    <a href="#" th:href="@{|/danie/${#strings.replace(burger.name, ' ', '-')}|}">
+                    <a href="#" th:href="@{|/burgers/${#strings.replace(burger.name, ' ', '-')}|}">
                         <h5 th:text="|${burger.name}(${burger.price}zł)|">test test (25zł)</h5>
                     </a>
                     <p th:text="${burger.shortDescription}">test.</p>
