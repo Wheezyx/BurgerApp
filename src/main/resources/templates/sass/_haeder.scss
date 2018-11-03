@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 10px;
+    font-family: $font1;
+}
+
+.wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+header>* {
+    position: absolute;
+}
+
+header {
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background-image: url(../img/snack-2635035_1920.jpg);
+    background-size: cover;
+    background-position: 12% 50%;
+
+    h1 {
+        top: 20%;
+        left: 50%;
+        color: #fff;
+        transform: translateX(-50%);
+        font-size: 3rem;
+        text-shadow: 0.05em 0.05em 0.2em rgba(10, 10, 10, 0.9);
+    }
+
+    .welcome {
+        top: 38%;
+        text-align: center;
+        font-size: 1.4rem;
+        font-family: $font3;
+        padding: 0 10px;
+        color: #fff;
+    }
+
+    .go-order {
+        width: 80%;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 0;
+        font-size: 1.2rem;
+        font-family: $font2;
+        background-color: #000;
+        border: 1px solid #fff;
+        color: #fff;
+        transition: .5s linear;
+
+        &:hover {
+            background-color: #fff;
+            color: #000;
+            border: .8px solid #000;
+            box-shadow: 0 14px 59px -7px rgba(0, 0, 0, 0.85);
+        }
+    }
+}
+
+/*!Responsiv-Header*/
+
+@media all and (min-width: 360px) {
+    header {
+        h1 {
+            font-size: 3.3rem;
+        }
+
+        .welcome {
+            font-size: 2rem;
+        }
+
+        .go-order {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@media all and (min-width: 520px) {
+    header {
+        h1 {
+            font-size: 3.6rem;
+        }
+
+        .welcome {
+            font-size: 2.3rem;
+        }
+
+        .go-order {
+            width: 70%;
+        }
+    }
+}
+
+@media all and (min-width: 630px) {
+    header {
+        background-position: 50% 50%;
+
+        h1 {
+            transform: translateX(-20%);
+        }
+
+        .go-order {
+            width: 60%;
+        }
+    }
+}
+
+@media all and (min-width: 798px) {
+    header {
+
+
+        h1 {
+            transform: translateX(-10%);
+            font-size: 4rem;
+        }
+
+        .welcome {
+            padding: 10px 20px;
+        }
+
+        .go-order {
+            width: 50%;
+        }
+
+    }
+}
+
+@media all and (min-width: 1024px) {
+    header {
+
+
+        h1 {
+            transform: translateX(0%);
+            font-size: 4rem;
+        }
+
+        .welcome {
+            left: 20%;
+            padding: 10px 50px;
+        }
+
+        .go-order {
+            width: 40%;
+            font-size: 2rem;
+        }
+    }
+}
+
+@media all and (min-width: 1200px) {
+    header {
+        h1 {
+            font-size: 6rem;
+        }
+
+        .welcome {
+            left: 40%;
+        }
+
+        .go-order {
+            width: 30%;
+            padding: 18px 30px;
+        }
+    }
+}
