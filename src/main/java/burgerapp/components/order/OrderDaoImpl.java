@@ -12,10 +12,10 @@ public class OrderDaoImpl extends GenericDaoImpl<Order, Long> implements OrderDa
 {
     
     @Override
-    public Optional<List<Order>> findAllByOrderStatus(OrderStatus status)
+    public Optional<List<Order>> findAllByOrderStatus(OrderStatus orderStatus)
     {
-        TypedQuery<Order> query = this.entityManager.createQuery("SELECT o FROM Order o WHERE o.orderstatus = :status", Order.class);
-        List<Order> list = query.setParameter("status", status).getResultList();
-        return list.size() > 0 ? Optional.of(list) : Optional.empty();
+        TypedQuery<Order> query = this.entityManager.createQuery("SELECT o FROM Order o WHERE o.status LIKE :orderStatus", Order.class);
+        List<Order> list = query.setParameter("orderStatus", orderStatus).getResultList();
+        return !list.isEmpty() ? Optional.of(list) : Optional.empty();
     }
 }

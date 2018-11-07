@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -27,19 +28,25 @@ public class OrderController
     }
     
     @GetMapping("/order/add")
-    public String addBurgerToOrder(@RequestParam Long burgerId, Model model)
+    public String addBurgerToOrder(@RequestParam Long burgerId, RedirectAttributes redirectAttributes)
     {
         Optional<Burger> burger = burgerService.get(burgerId);
         burger.ifPresent(clientOrder::addBurger);
         if(burger.isPresent())
         {
-            model.addAttribute("message", "Dodano");
+            redirectAttributes.addFlashAttribute("rdrmessage", "Dodano" + burger.get().getName() + " do zamówienia");
         }
         else
         {
-            model.addAttribute("message", "Nie Dodano");
+            redirectAttributes.addFlashAttribute("rdrmessage", "Nie dodano do zamówienia, spróbuj ponownie!");
         }
-        return "message";
+        return "redirect:/";
+    }
+    
+    @GetMapping("/orders")
+    public String getOrders()
+    {
+        return "client-orders";
     }
     
     @GetMapping("/order")
@@ -61,7 +68,7 @@ public class OrderController
         order.setClientName(clientName);
         orderService.add(order);
         clientOrder.clear();
-        model.addAttribute("message", "Twój kod odbioru zamówienia to:" + order.getCode());
+        model.addAttribute("message", "Numer zamówienia:" + order.getId() + " Twój kod odbioru zamówienia to:" + order.getCode());
         return "message";
     }
 }

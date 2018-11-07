@@ -60,6 +60,7 @@ public abstract class GenericDaoImpl<E, K extends Serializable> implements Gener
     }
     
     @Override
+    @Transactional
     public Optional<List<E>> getAll()
     {
         return Optional.ofNullable(entityManager.createQuery("from " + daoType.getName()).getResultList());

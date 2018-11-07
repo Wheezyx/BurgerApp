@@ -17,6 +17,25 @@
             <a href="#" th:href="@{/order/add(burgerId=${burger.id})}" class="btn btn-success">
                 Dodaj do zamówienia</a>
         </div>
+        <h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <form action="#" method="post" th:action="@{/burgers/modify}" th:object="${burger}" accept-charset="UTF-8">
+                <input type="hidden" th:value="${id}" th:field="*{id}" />
+                <label>
+                    <input type="text" th:field="*{name}" th:value="*{name}" th:placeholder="${name}"/><br>
+                </label>
+                <label>
+                    <input type="text" th:field="*{price}" th:value="*{price}" th:placeholder="${price}"/><br>
+                </label>
+                <label>
+                    <input type="text" th:field="*{shortDescription}" th:value="*{shortDescription}" th:placeholder="${shortDescription}"/><br>
+                </label>
+                <label>
+                    <textarea rows="4" cols="50" th:field="*{description}" th:value="*{description}"  th:placeholder="${description}"></textarea>
+                </label>
+                <input type="submit" value="Send"/>
+            </form>
+        </div>
     </div>
 </div>
 </body>

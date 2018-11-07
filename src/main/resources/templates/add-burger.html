@@ -7,7 +7,7 @@
 <body>
 <h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
 <div>
-    <form action="#" method="post" th:action="@{/panel/add-burger}" th:object="${formBurger}">
+    <form action="#" method="post" th:action="@{/panel/add-burger}" th:object="${formBurger}" accept-charset="UTF-8">
         <label>
             <input type="text" th:field="*{name}" placeholder="Name"/><br>
         </label>
@@ -20,7 +20,7 @@
         <label>
             <textarea rows="4" cols="50" th:field="*{description}" placeholder="Long desc"></textarea>
         </label>
-        <input type="submit" value="Send"/>
+        <input type="submit" value="Zmień"/>
     </form>
 </div>
 </body>

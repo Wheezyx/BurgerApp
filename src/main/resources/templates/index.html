@@ -15,13 +15,13 @@
             <div class="container text-center jumbo-container">
                 <h1 class="display-3">BurgerBar</h1>
                 <p>Witaj w Burgerowni! Zamawiaj, zapłać, odbierz specjalny kod i czekaj na swoje zamówienie!</p>
+                <h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
             </div>
         </div>
         <a th:href="@{/order}" class="btn btn-success">Zamówienie</a>
         <div th:each="burger: ${@clientOrder.getOrder().getBurgers()}">
             <p th:text="${burger.name}"></p>
         </div>
-        <!-- elements burger -->
         <div th:remove="all-but-first">
             <div class="media col-6 offset-3" th:each="burger:${burgers}">
                 <i class="material-icons">fastfood</i>

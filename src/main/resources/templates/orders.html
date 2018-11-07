@@ -1,13 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>ORDERS PANEL!!!!</title>
+    <title>Zamówienia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="./css/main.css" th:href="@{/templates/css/main.css}" rel="stylesheet">
 </head>
-
 <body>
-    Erning collabs init message
+<div class="container">
+    <div class="jumbotron home-jumbo">
+        <div class="container text-center text-white jumbo-container">
+            <h1 class="display-3">Zamówienia</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center mb-2">
+                <a href="#" th:href="@{/panel/orders(status=${T(burgerapp.components.order.OrderStatus).NEW.name()})}"
+                   class="btn btn-primary mx-1">Nowe</a>
+                <a href="#" th:href="@{/panel/orders(status=${T(burgerapp.components.order.OrderStatus).IN_PROGRESS.name()})}"
+                   class="btn btn-danger mx-1">W realizacji</a>
+                <a href="#" th:href="@{/panel/orders(status=${T(burgerapp.components.order.OrderStatus).COMPLETE.name()})}"
+                   class="btn btn-success mx-1">Przygotowane</a>
+                <a href="#" th:href="@{/panel/orders(status=${T(burgerapp.components.order.OrderStatus).DELIVERED.name()})}"
+                   class="btn btn-link mx-1">Odebrane</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2" th:if="${orders != null}">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Imię klienta</th>
+                    <th scope="col">Kod odbioru</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Edycja</th>
+                </tr>
+                </thead>
+                <tbody th:remove="all-but-first">
+                <tr th:each="order: ${orders}">
+                    <th scope="row" th:text="${order.id}">1</th>
+                    <td th:text="${order.clientName}">Mateusz</td>
+                    <td th:text="${order.code}">ASDzxc!</td>
+                    <th:block th:switch="${order.status}">
+                        <td th:case="${T(burgerapp.components.order.OrderStatus).NEW}">Nowe</td>
+                        <td th:case="${T(burgerapp.components.order.OrderStatus).IN_PROGRESS}">W realizacji</td>
+                        <td th:case="${T(burgerapp.components.order.OrderStatus).COMPLETE}">Przygotowane</td>
+                        <td th:case="${T(burgerapp.components.order.OrderStatus).DELIVERED}">Odebrane</td>
+                    </th:block>
+                    <td>
+                        <a href="#" class="btn btn-dark">Edytuj</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">X</th>
+                    <td>Mateusz</td>
+                    <td>XXADSA/td>
+                    <td>Nowe</td>
+                    <td><a href="#" class="btn btn-dark">Edytuj</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${orders == null}" class="text-center">
+            <h2>Brak zamówień</h2>
+        </div>
+    </div>
+</div>
 </body>
-
 </html>

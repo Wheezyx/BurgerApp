@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -54,23 +55,26 @@ public class WebConfig implements WebMvcConfigurer
         {
             registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/");
         }
-
+        
     }
     
     @Bean
-    public SpringTemplateEngine templateEngine()
+    public SpringTemplateEngine templateEngine(SpringSecurityDialect sec)
     {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setEnableSpringELCompiler(true);
+        templateEngine.addDialect(sec);
         return templateEngine;
     }
     
+    @Override
     public void configureViewResolvers(ViewResolverRegistry registry)
     {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setCharacterEncoding("UTF-8");
-        viewResolver.setTemplateEngine(templateEngine());
+        SpringSecurityDialect sec = new SpringSecurityDialect();
+        viewResolver.setTemplateEngine(templateEngine(sec));
         registry.viewResolver(viewResolver);
     }
     
