@@ -1,9 +1,9 @@
 body {
-    background: url('../image/background.jpg') center;
-    color: white;
+    background: url('../img/background.jpg') center;
+    color: black;
 }
 .jumbotron{
-    background: url('../image/burger_background.gif') center;
+    background: url('../img/burger_background.gif') center;
     color: Black;
     font-size: 25px;
     font-weight: bold;
@@ -21,5 +21,11 @@ margin-left: 40%;
 font-size: 50px;
 }
 .table{
+    color: white;
+}
+th{
+    color: white;
+}
+td{
     color: white;
 }

@@ -14,6 +14,6 @@ public class BurgerDaoImpl extends GenericDaoImpl<Burger, Long> implements Burge
     {
         TypedQuery<Burger> query = entityManager.createQuery("SELECT b FROM Burger b WHERE b.name LIKE :name", Burger.class);
         List<Burger> list = query.setParameter("name", name).getResultList();
-        return list.size() > 0 ? Optional.ofNullable(list.get(0)) : Optional.empty();
+        return !list.isEmpty() ? Optional.ofNullable(list.get(0)) : Optional.empty();
     }
 }

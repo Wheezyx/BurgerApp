@@ -2,7 +2,6 @@ package burgerapp.components.burger;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,5 +24,4 @@ public class Burger implements Serializable
     private String shortDescription;
     @Column(length = 512)
     private String description;
-    private String imgUrl;
 }

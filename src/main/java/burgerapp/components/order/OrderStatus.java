@@ -2,7 +2,8 @@ package burgerapp.components.order;
 
 public enum OrderStatus
 {
-    NEW,
+    DELIVERED,
+    COMPLETE,
     IN_PROGRESS,
-    COMPLETE
+    NEW,
 }
