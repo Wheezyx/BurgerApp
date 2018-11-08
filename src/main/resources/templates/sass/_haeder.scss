@@ -7,10 +7,17 @@
 body {
     font-size: 10px;
     font-family: $font1;
+    background-color: #EEF4F2;
+}
+
+.clearfixt::after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 .wrapper {
-    max-width: 1600px;
+    max-width: 1900px;
     margin: 0 auto;
 }
 
@@ -24,6 +31,7 @@ header {
     top: 0;
     height: 100vh;
     background-image: url(../img/snack-2635035_1920.jpg);
+    background-attachment: fixed;
     background-size: cover;
     background-position: 12% 50%;
 

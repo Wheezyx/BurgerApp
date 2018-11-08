@@ -8,10 +8,17 @@
 body {
   font-size: 10px;
   font-family: "Roboto", sans-serif;
+  background-color: #EEF4F2;
+}
+
+.clearfixt::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .wrapper {
-  max-width: 1600px;
+  max-width: 1900px;
   margin: 0 auto;
 }
 
@@ -25,6 +32,7 @@ header {
   top: 0;
   height: 100vh;
   background-image: url(../img/snack-2635035_1920.jpg);
+  background-attachment: fixed;
   background-size: cover;
   background-position: 12% 50%;
 }
@@ -153,7 +161,85 @@ header .go-order:hover {
   }
 }
 
-main {
-  height: 100vh;
+.order {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 30px 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.order .burger-add {
+  -ms-flex-preferred-size: 90%;
+      flex-basis: 90%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  text-align: center;
+  padding: 20px 0;
+  border: 3px solid #EEF4F2;
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-transition: .5s linear;
+  transition: .5s linear;
+}
+
+.order .burger-add:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.order .burger-add h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.order .burger-add i.fa-plus-circle {
+  font-size: 2rem;
+  text-decoration: none;
+  color: crimson;
+  cursor: pointer;
+}
+
+@media all and (min-width: 640px) {
+  .order {
+    padding: 0 5px;
+  }
+  .order .burger-add {
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+    padding: 25px 0;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .order {
+    -ms-flex-line-pack: distribute;
+        align-content: space-around;
+  }
+  .order .burger-add {
+    -ms-flex-preferred-size: 25%;
+        flex-basis: 25%;
+  }
+}
+
+/*! Footer*/
+footer {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 10vh;
+  background-color: #000;
+}
+
+footer h1 {
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 10vh;
+  color: #fff;
 }
 /*# sourceMappingURL=main2.css.map */

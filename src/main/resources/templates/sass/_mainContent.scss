@@ -1,3 +1,56 @@
-main {
-    height: 100vh;
+.order {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    justify-content: center;
+
+    .burger-add {
+        flex-basis: 90%;
+        flex-grow: 1;
+        text-align: center;
+        padding: 20px 0;
+        border: 3px solid #EEF4F2;
+        background-color: rgba(0, 0, 0, .7);
+        transition: .5s linear;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .9);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 25px;
+        }
+
+        i.fa-plus-circle {
+            font-size: 2rem;
+            text-decoration: none;
+            color: crimson;
+            cursor: pointer;
+        }
+    }
+}
+
+@media all and (min-width: 640px) {
+    .order {
+        padding: 0 5px;
+
+        .burger-add {
+            flex-basis: 50%;
+            padding: 25px 0;
+        }
+    }
+}
+
+
+@media all and (min-width: 1024px) {
+    .order {
+        align-content: space-around;
+
+        .burger-add {
+            flex-basis: 25%;
+        }
+    }
 }
