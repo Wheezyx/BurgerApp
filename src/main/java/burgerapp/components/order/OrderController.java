@@ -2,6 +2,7 @@ package burgerapp.components.order;
 
 import burgerapp.components.burger.Burger;
 import burgerapp.components.burger.BurgerService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,19 +15,12 @@ import java.util.Iterator;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 public class OrderController
 {
     private ClientOrder clientOrder;
     private BurgerService burgerService;
     private OrderService orderService;
-    
-    @Autowired
-    private OrderController(ClientOrder clientOrder, BurgerService burgerService, OrderService orderService)
-    {
-        this.clientOrder = clientOrder;
-        this.burgerService = burgerService;
-        this.orderService = orderService;
-    }
     
     @GetMapping("/order/add")
     public String addBurgerToOrder(@RequestParam Long burgerId, RedirectAttributes redirectAttributes)

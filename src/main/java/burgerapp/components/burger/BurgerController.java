@@ -1,5 +1,6 @@
 package burgerapp.components.burger;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +13,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 public class BurgerController
 {
     private BurgerService burgerService;
-    
-    @Autowired
-    private BurgerController(BurgerService burgerService)
-    {
-        this.burgerService = burgerService;
-    }
     
     @GetMapping("/burgers/{name}")
     public String getBurger(@PathVariable String name, Model model)

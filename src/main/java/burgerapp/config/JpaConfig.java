@@ -46,7 +46,7 @@ public class JpaConfig
     }
     
     @Bean
-    public DataSource createDS()
+    public DataSource dataSource()
     {
         BasicDataSource ds = new BasicDataSource();
         ds.setUrl("jdbc:h2:tcp://localhost:9092/~/test");
