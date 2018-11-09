@@ -15,6 +15,7 @@
             <a th:href="@{/}">Strona główna</a>
         </div>
     </div>
+    <h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
     <div class="col-6 offset-3" th:if="${!order.burgers.isEmpty()}">
         <table class="table">
             <thead>
@@ -22,6 +23,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nazwa</th>
                 <th scope="col">Cena</th>
+                <th scope="col">Operacja</th>
             </tr>
             </thead>
             <tbody th:remove="all-but-first">
@@ -29,6 +31,7 @@
                 <th scope="row" th:text="${index.index+1}">1</th>
                 <td th:text="${burger.name}">Test name</td>
                 <td th:text="|${burger.price}zł|">Test cena</td>
+                <td><a href="#" th:href="@{/order/clear(name=${burger.name})}"><i class="fas fa-minus-circle"></i></a></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
@@ -49,6 +52,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Złóż zamówienie</button>
         </form>
+        <a href="#" th:href="@{/order/clear}" class="btn btn-success">Wyczyść zamówienie</a>
     </div>
     <div th:if="${order.burgers.isEmpty()}" class="text-center">
         <h2>Puste zamówienie</h2>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 @Controller
@@ -70,5 +71,35 @@ public class OrderController
         clientOrder.clear();
         model.addAttribute("message", "Numer zamówienia:" + order.getId() + " Twój kod odbioru zamówienia to:" + order.getCode());
         return "message";
+    }
+    
+    @GetMapping("/order/clear")
+    public String clearOrder(@RequestParam(value = "name", required = false) String name, RedirectAttributes redirectAttributes)
+    {
+        final String message;
+        if(name != null)
+        {
+            for(Iterator<Burger> i = clientOrder.getOrder().getBurgers().iterator(); i.hasNext(); )
+            {
+                Burger burger = i.next();
+                if(burger.getName().equals(name))
+                {
+                    i.remove();
+                    break;
+                }
+            }
+            message = "Usunięto " + name;
+        }
+        else if(clientOrder.getOrder().getBurgers().isEmpty())
+        {
+            message = "Zamówienie jest puste!";
+        }
+        else
+        {
+            clientOrder.clear();
+            message = "Zamówienie wyczyszczone";
+        }
+        redirectAttributes.addFlashAttribute("rdrmessage", message);
+        return name == null ? "redirect:/" : "redirect:/order";
     }
 }

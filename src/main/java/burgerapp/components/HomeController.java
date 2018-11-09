@@ -27,6 +27,6 @@ public class HomeController
 		
         Optional<List<Burger>> burgers = burgerService.getAll();
         burgers.ifPresent(burs -> model.addAttribute("burgers", burs));
-        return "index";
+        return "index2";
     }
 }
