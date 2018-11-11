@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserService
 {
-    private UserDao userDao;
+    private final UserDao userDao;
     @Autowired
     private PasswordEncoder passwordEncoder;
     private static final String DEFAULT_ROLE = "ROLE_ADMIN";

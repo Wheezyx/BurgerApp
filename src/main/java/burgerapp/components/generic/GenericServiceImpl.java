@@ -2,6 +2,7 @@ package burgerapp.components.generic;
 
 import burgerapp.components.order.Order;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import java.util.Optional;
 @Service
 public abstract class GenericServiceImpl<E, K> implements GenericService<E, K>
 {
-    private GenericDao<E, K> genericDao;
+    private final GenericDao<E, K> genericDao;
     
     public GenericServiceImpl(GenericDao<E, K> genericDao)
     {
@@ -26,6 +27,7 @@ public abstract class GenericServiceImpl<E, K> implements GenericService<E, K>
         return genericDao.getAll();
     }
     
+    @Transactional
     public Optional<E> get(K id)
     {
         return genericDao.find(id);

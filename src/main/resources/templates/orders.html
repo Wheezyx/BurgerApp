@@ -51,7 +51,7 @@
                         <td th:case="${T(burgerapp.components.order.OrderStatus).DELIVERED}">Odebrane</td>
                     </th:block>
                     <td>
-                        <a href="#" class="btn btn-dark">Edytuj</a>
+                        <a href="#" th:href="@{|/panel/order/${order.id}|}" class="btn btn-dark">Edytuj</a>
                     </td>
                 </tr>
                 <tr>

@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public class BurgerServiceImpl extends GenericServiceImpl<Burger, Long> implements BurgerService
 {
-    private BurgerDao burgerDao;
+    private final BurgerDao burgerDao;
     
     public BurgerServiceImpl(
         @Qualifier("burgerDaoImpl") GenericDao<Burger, Long> genericDao)

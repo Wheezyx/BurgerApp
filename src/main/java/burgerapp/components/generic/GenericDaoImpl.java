@@ -15,7 +15,7 @@ import java.util.Optional;
 @SuppressWarnings("unchecked")
 public abstract class GenericDaoImpl<E, K extends Serializable> implements GenericDao<E, K>
 {
-    private Class<? extends E> daoType;
+    private final Class<? extends E> daoType;
     @PersistenceContext
     protected EntityManager entityManager;
     

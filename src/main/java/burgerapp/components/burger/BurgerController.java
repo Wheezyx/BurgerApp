@@ -1,7 +1,6 @@
 package burgerapp.components.burger;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +31,7 @@ public class BurgerController
         try
         {
             burgerService.update(burger);
-            redirectAttributes.addFlashAttribute("rdrmessage", "Successful eddited burger.");
+            redirectAttributes.addFlashAttribute("rdrmessage", "Successful added burger.");
         }
         catch(RuntimeException e)
         {

@@ -12,7 +12,7 @@ import java.util.UUID;
 @Service
 public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements OrderService
 {
-    private OrderDao orderDao;
+    private final OrderDao orderDao;
     
     public OrderServiceImpl(
         @Qualifier("orderDaoImpl") GenericDao<Order, Long> genericDao)
