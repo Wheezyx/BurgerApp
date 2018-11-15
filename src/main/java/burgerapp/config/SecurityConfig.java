@@ -36,11 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .antMatchers("/**").permitAll()
             .anyRequest().authenticated()
             .and()
-            .formLogin().defaultSuccessUrl("/panel").permitAll()
+            .formLogin().loginPage("/login.html").defaultSuccessUrl("/panel").failureUrl("/login?error=true").permitAll()
             .and()
-            .logout().logoutUrl("/logout")
+            .logout().logoutUrl("/logout").deleteCookies("JSESSIONID")
             .and()
-            .csrf();
+            .rememberMe().tokenValiditySeconds(86400).userDetailsService(userDetailsService)
+            .and()
+        .csrf();
     }
     
     @Bean

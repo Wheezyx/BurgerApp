@@ -2,7 +2,6 @@ package burgerapp.components.user;
 
 import burgerapp.components.generic.GenericDao;
 import burgerapp.components.generic.GenericServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,15 +10,15 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserService
 {
     private final UserDao userDao;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    private static final String DEFAULT_ROLE = "ROLE_ADMIN";
+    private final PasswordEncoder passwordEncoder;
+    private static final String DEFAULT_ROLE = "ROLE_USER";
     
     public UserServiceImpl(
-        @Qualifier("userDaoImpl") GenericDao<User, Long> genericDao)
+        @Qualifier("userDaoImpl") GenericDao<User, Long> genericDao ,PasswordEncoder passwordEncoder)
     {
         super(genericDao);
         this.userDao = (UserDao) genericDao;
+        this.passwordEncoder = passwordEncoder;
     }
     
     @Override

@@ -28,7 +28,10 @@ public class JpaConfig
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         Map<String, String> properties = new HashMap<>();
         properties.put("hibernate.hbm2ddl.auto", "update");
-        properties.put("spring.jpa.database-platform","org.hibernate.dialect.H2Dialect");
+        properties.put("spring.jpa.database-platform", "org.hibernate.dialect.H2Dialect");
+        properties.put("hibernate.connection.CharSet", "utf-8");
+        properties.put("hibernate.connection.characterEncoding", "utf-8");
+        properties.put("hibernate.connection.useUnicode", "true");
         emf.setJpaPropertyMap(properties);
         emf.setDataSource(ds);
         emf.setJpaVendorAdapter(adapter);
