@@ -3,12 +3,14 @@ package burgerapp.components.burger;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -26,17 +28,22 @@ public class BurgerController
     }
     
     @PostMapping("/burgers/modify")
-    public String updateBurger(@ModelAttribute Burger burger, RedirectAttributes redirectAttributes)
+    public String updateBurger(@Valid @ModelAttribute Burger burger, BindingResult result, RedirectAttributes redirectAttributes)
     {
-        try
+        if(result.hasErrors())
         {
-            burgerService.update(burger);
+            redirectAttributes.addFlashAttribute("rdr", "Niepoprawnie wypełnione pola, spróbuj ponownie.");
+            return "redirect:/";
+        }
+        boolean status = burgerService.update(burger);
+        if(status)
+        {
             redirectAttributes.addFlashAttribute("rdrmessage", "Successful added burger.");
         }
-        catch(RuntimeException e)
+        else
         {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Cannot modify: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("rdrmessage", "Błąd przy zapisie do bazy, spróbuj ponownie");
         }
-        return "redirect:/burgers/" + burger.getName().replace(' ', '-');
+        return "redirect:/";
     }
 }

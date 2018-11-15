@@ -5,8 +5,11 @@ import burgerapp.components.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -22,12 +25,24 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
     }
     
     @Override
-    public Order add(Order order)
+    public boolean add(Order order)
     {
-        String code = generateCode();
-        order.setCode(code);
-        orderDao.add(order);
-        return order;
+        try
+        {
+            String code = generateCode();
+            order.setCode(code);
+            orderDao.add(order);
+            return true;
+        }
+        catch(ConstraintViolationException e)
+        {
+            Set<ConstraintViolation<?>> errors = e.getConstraintViolations();
+            errors.forEach(err -> System.err.println(
+                err.getPropertyPath() + " " +
+                err.getInvalidValue() + " " +
+                err.getMessage()));
+            return false;
+        }
     }
     
     private String generateCode()

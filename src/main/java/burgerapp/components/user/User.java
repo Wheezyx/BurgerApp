@@ -24,6 +24,7 @@ class User
     private Long id;
     @NotEmpty
     private String email;
+    private boolean enabled;
     @NotEmpty
     private String password;
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)

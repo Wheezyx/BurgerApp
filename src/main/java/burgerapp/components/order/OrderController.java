@@ -56,14 +56,20 @@ public class OrderController
     }
     
     @PostMapping("/order/create")
-    public String createOrder(@RequestParam String clientName, Model model)
+    public String createOrder(@RequestParam String clientName,RedirectAttributes redirectAttributes)
     {
+        
         Order order = clientOrder.getOrder();
         order.setClientName(clientName);
-        orderService.add(order);
-        clientOrder.clear();
-        model.addAttribute("message", "Numer zamówienia:" + order.getId() + " Twój kod odbioru zamówienia to:" + order.getCode());
-        return "message";
+        boolean status = orderService.add(order);
+        if (status){
+            clientOrder.clear();
+            redirectAttributes.addFlashAttribute("finalizeOrder", "Numer zamówienia:" + order.getId() +
+                                                                  " Twój kod odbioru zamówienia to:" + order.getCode());
+        } else{
+            redirectAttributes.addFlashAttribute("rdrmessage", "Nie można utworzyć zamówienia, spróbuj za chwilę!");
+        }
+        return "redirect:/order";
     }
     
     @GetMapping("/order/clear")

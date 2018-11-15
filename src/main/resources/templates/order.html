@@ -12,7 +12,6 @@
     <div class="jumbotron home-jumbo">
         <div class="container text-center text-white jumbo-container">
             <h1 class="display-3">Twoje zamówienie</h1>
-            <a th:href="@{/}">Strona główna</a>
         </div>
     </div>
     <h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
@@ -47,14 +46,19 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="addressInput">Podaj imię</label>
                 <div class="col-sm-10">
-                    <input type="text" name="clientName" id="addressInput" placeholder="Imię" class="form-control">
+                    <input type="text" name="clientName" id="addressInput" placeholder="Imię" class="form-control" th:required="true">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Złóż zamówienie</button>
         </form>
         <a href="#" th:href="@{/order/clear}" class="btn btn-success">Wyczyść zamówienie</a>
     </div>
-    <div th:if="${order.burgers.isEmpty()}" class="text-center">
+    <div th:if="${finalizeOrder}" class="text-center">
+        <h1 class="display-3" th:text="${finalizeOrder}"></h1>
+        <a href="#" th:href="@{/}">Strona główna</a>
+        <a href="#" th:href="@{/orders}">Kolejka zamówień</a>
+    </div>
+    <div th:if="${order.burgers.isEmpty() and finalizeOrder==null}" class="text-center">
         <h2>Puste zamówienie</h2>
         <a href="#" th:href="@{/}">Strona główna - dodaj coś!</a>
     </div>

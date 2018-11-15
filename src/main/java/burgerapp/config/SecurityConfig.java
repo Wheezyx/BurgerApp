@@ -12,13 +12,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 @EnableWebSecurity
 @AllArgsConstructor
 @Configuration
 @ComponentScan({"burgerapp.components.user", "burgerapp.config"})
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
+    private AuthenticationFailureHandler customAuthenticationFailureHandler;
     private UserDetailsService userDetailsService;
     
     @Override
@@ -36,13 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .antMatchers("/**").permitAll()
             .anyRequest().authenticated()
             .and()
-            .formLogin().loginPage("/login.html").defaultSuccessUrl("/panel").failureUrl("/login?error=true").permitAll()
+            .formLogin().loginPage("/login.html").failureHandler(customAuthenticationFailureHandler).defaultSuccessUrl("/panel").permitAll()
             .and()
-            .logout().logoutUrl("/logout").deleteCookies("JSESSIONID")
+            .logout().logoutUrl("/logout").invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/")
             .and()
             .rememberMe().tokenValiditySeconds(86400).userDetailsService(userDetailsService)
             .and()
-        .csrf();
+            .csrf();
     }
     
     @Bean

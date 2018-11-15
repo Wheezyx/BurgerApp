@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,11 +59,12 @@ public class PanelController
     {
         Optional<Order> order = orderService.get(id);
         return order.map(o -> panelUpdate(o, model))
-             .orElse("redirect:/");
+                    .orElse("redirect:/");
     }
     
     @PostMapping("/order/{id}")
-    public String changeOrderStatus(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+    public String changeOrderStatus(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes)
+    {
         Optional<Order> order = orderService.get(id);
         order.ifPresent(o -> {
             o.setStatus(OrderStatus.nextStatus(o.getStatus()));
@@ -71,7 +73,6 @@ public class PanelController
         return order.map(o -> panelUpdate(o, model))
                     .orElse("redirect:/");
     }
-    
     
     @GetMapping("/add-burger")
     public String addBurger(Model model)
@@ -88,16 +89,20 @@ public class PanelController
     }
     
     @PostMapping("/add-burger")
-    public String addBurger(@ModelAttribute Burger formBurger, BindingResult result, RedirectAttributes redirectAttributes)
+    public String addBurger(@Valid @ModelAttribute("formBurger") Burger formBurger, BindingResult result, RedirectAttributes redirectAttributes)
     {
         if(result.hasErrors())
         {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Failed adding, errors: " + result.getAllErrors());
+            return "add-burger";
+        }
+        boolean status = burgerService.add(formBurger);
+        if(status)
+        {
+            redirectAttributes.addFlashAttribute("rdrmessage", "Success, burger created, Feel free to add another.");
         }
         else
         {
-            burgerService.add(formBurger);
-            redirectAttributes.addFlashAttribute("rdrmessage", "Success, burger created, Feel free to add another.");
+            redirectAttributes.addFlashAttribute("rdrmessage", "Error with creating new burger");
         }
         return "redirect:/panel/add-burger";
     }

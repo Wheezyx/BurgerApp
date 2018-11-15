@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,9 @@ public class Order implements Serializable
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Burger> burgers = new ArrayList<>();
+    @Size(min= 5, max = 20)
     private String clientName;
+    @NotBlank
     private String code;
     @Enumerated(EnumType.ORDINAL)
     private OrderStatus status;

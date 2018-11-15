@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,10 @@
 
 <body>
     Erni test fork commit.
+
+    <form name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit" value="Wyloguj się"/>
+    </form>
 </body>
 
 </html>

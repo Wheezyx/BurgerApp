@@ -1,13 +1,15 @@
 package burgerapp.components.generic;
 
-import burgerapp.components.order.Order;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public abstract class GenericServiceImpl<E, K> implements GenericService<E, K>
 {
     private final GenericDao<E, K> genericDao;
@@ -17,9 +19,18 @@ public abstract class GenericServiceImpl<E, K> implements GenericService<E, K>
         this.genericDao = genericDao;
     }
     
-    public void saveOrUpdate(E entity)
+    public boolean saveOrUpdate(E entity)
     {
-        genericDao.saveOrUpdate(entity);
+        try
+        {
+            genericDao.saveOrUpdate(entity);
+            return true;
+        }
+        catch(ConstraintViolationException e)
+        {
+            log.error(e.getMessage());
+            return false;
+        }
     }
     
     public Optional<List<E>> getAll()
@@ -33,15 +44,33 @@ public abstract class GenericServiceImpl<E, K> implements GenericService<E, K>
         return genericDao.find(id);
     }
     
-    public Order add(E entity)
+    public boolean add(E entity)
     {
-        genericDao.add(entity);
-        return null;
+        try
+        {
+            genericDao.add(entity);
+            log.info("Successful created and saved " + entity.getClass().getSimpleName());
+            return true;
+        }
+        catch(ConstraintViolationException e)
+        {
+            log.error(e.getMessage());
+            return false;
+        }
     }
     
-    public void update(E entity)
+    public boolean update(E entity)
     {
-        genericDao.update(entity);
+        try
+        {
+            genericDao.update(entity);
+            return true;
+        }
+        catch(ConstraintViolationException e)
+        {
+            log.error(e.getMessage());
+            return false;
+        }
     }
     
     public void remove(E entity)
