@@ -4,6 +4,7 @@ import burgerapp.components.burger.Burger;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -26,6 +26,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
     {
         UserRole userRole = userDao.findByRole(DEFAULT_ROLE);
         user.getRoles().add(userRole);
+        user.setEnabled(true);
         String passwordHash = passwordEncoder.encode(user.getPassword());
         user.setPassword(passwordHash);
         userDao.add(user);

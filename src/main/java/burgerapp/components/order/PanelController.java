@@ -102,7 +102,7 @@ public class PanelController
         }
         else
         {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Error with creating new burger");
+            redirectAttributes.addFlashAttribute("rdrmessage", "Error with creating new burger: Name already used");
         }
         return "redirect:/panel/add-burger";
     }
