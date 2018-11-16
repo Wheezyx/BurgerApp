@@ -42,7 +42,7 @@ public class BurgerController
         }
         else
         {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Błąd przy zapisie do bazy, spróbuj ponownie");
+            redirectAttributes.addFlashAttribute("rdrmessage", "Błąd przy zapisie do bazy, nazwa aktualnie zajęta!");
         }
         return "redirect:/";
     }

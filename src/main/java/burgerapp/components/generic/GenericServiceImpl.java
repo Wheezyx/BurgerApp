@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public abstract class GenericServiceImpl<E, K> implements GenericService<E, K>
             genericDao.saveOrUpdate(entity);
             return true;
         }
-        catch(ConstraintViolationException e)
+        catch(ConstraintViolationException | PersistenceException e)
         {
             log.error(e.getMessage());
             return false;
@@ -52,7 +53,7 @@ public abstract class GenericServiceImpl<E, K> implements GenericService<E, K>
             log.info("Successful created and saved " + entity.getClass().getSimpleName());
             return true;
         }
-        catch(ConstraintViolationException e)
+        catch(ConstraintViolationException | PersistenceException e)
         {
             log.error(e.getMessage());
             return false;
@@ -66,7 +67,7 @@ public abstract class GenericServiceImpl<E, K> implements GenericService<E, K>
             genericDao.update(entity);
             return true;
         }
-        catch(ConstraintViolationException e)
+        catch(ConstraintViolationException | PersistenceException e)
         {
             log.error(e.getMessage());
             return false;

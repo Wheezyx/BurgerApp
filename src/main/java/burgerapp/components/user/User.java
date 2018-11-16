@@ -17,6 +17,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
+public
 class User
 {
     @Id

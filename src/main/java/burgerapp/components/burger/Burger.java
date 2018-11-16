@@ -3,6 +3,9 @@ package burgerapp.components.burger;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -28,6 +30,7 @@ public class Burger implements Serializable
     @Max(value = 1000, message = "Wartość musi być mniejsza niz 1000")
     private Double price;
     @NotBlank(message = "Nazwa nie może być pusta")
+    @Column(unique = true)
     private String name;
     @Size(max = 90, min = 10, message = "Krótki opis musi zawierac od 10 do 90 znaków")
     @Column(name = "short_description")
