@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders status</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="css/main.css" th:href="@{/templates/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <input type="button" id="orders" name="getData" value="GetData">
+</div>
+<table id="records_table" border='3'>
+    <tr>
+        <th>Numer zamówienia</th>
+        <th>Imie</th>
+        <th>Status</th>
+    </tr>
+</table>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/templates/js/ajax-client-order.js}"></script>
+</body>
+</html>
