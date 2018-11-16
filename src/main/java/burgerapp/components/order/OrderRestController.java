@@ -13,7 +13,7 @@ public class OrderRestController
 {
     private OrderService orderService;
     
-    @GetMapping
+    @GetMapping("/api/orders")
     public List<Order> getOrderList()
     {
         Optional<List<Order>> optionalList = this.orderService.getAll();

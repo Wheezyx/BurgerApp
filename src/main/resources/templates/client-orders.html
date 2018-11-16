@@ -9,16 +9,17 @@
 </head>
 <body>
 <div class="container">
-    <input type="button" id="orders" name="getData" value="GetData">
+    <input type="button" id="getData" name="getData" value="GetData">
+<div class="table-responsive">
+    <table class="table table-bordered table striped" id="order_table">
+        <tr>
+            <th>Numer</th>
+            <th>Imię</th>
+            <th>Status</th>
+        </tr>
+    </table>
 </div>
-<table id="records_table" border='3'>
-    <tr>
-        <th>Numer zamówienia</th>
-        <th>Imie</th>
-        <th>Status</th>
-    </tr>
-</table>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" th:src="@{/templates/js/ajax-client-order.js}"></script>
+<script type="text/javascript" th:src="@{/templates/js/data-provider.js}"></script>
 </body>
 </html>
