@@ -1,6 +1,5 @@
 package burgerapp.components.order;
 
-import burgerapp.components.burger.Burger;
 import burgerapp.components.generic.GenericDaoImpl;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;

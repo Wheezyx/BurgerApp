@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BurgerApp!</title>
+    <script th:inline="javascript">
+        window.onload = function () {
+            var burger_map = /*[[${burger_map}]]*/ '{}';
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "dark2",
+                title: {
+                    text: "Statystyki kupionych burgerów"
+                },
+                axisY: {
+                    title: "Ilość"
+                },
+                data: [{
+                    type: "column",
+                    dataPoints: []
+                }]
+            });
+            for (var key in burger_map)
+            {
+                chart.options.data[0].dataPoints.push({y: burger_map [key], label: key});
+            }
+            chart.render();
+        };
+    </script>
+</head>
+<body>
+<div id="chartContainer" style="height: 90%; width: 50%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
+</html>
