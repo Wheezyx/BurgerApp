@@ -106,7 +106,7 @@ public class PanelController
     
     @GetMapping("/chart")
     public String burgerChart(Model model){
-        Map<String, Integer> burgerMapp = orderService.getAllBurgersFromAllOrders();
+        Map<String, Long> burgerMapp = orderService.getAllBurgersFromAllOrders();
         model.addAttribute("burger_map", burgerMapp);
         return "chart";
     }

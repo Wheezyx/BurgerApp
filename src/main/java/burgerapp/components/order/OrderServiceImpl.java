@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements OrderService
@@ -61,28 +62,34 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long> implements
         return this.orderDao.findAllByOrderStatus(status);
     }
     
-    public Map<String, Integer> getAllBurgersFromAllOrders()
+    public Map<String, Long> getAllBurgersFromAllOrders()
     {
-        Optional<List<Order>> optionalList = orderDao.getAllWithBurgers();
+//        Optional<List<Order>> optionalList = orderDao.getAllWithBurgers();
+//        if(optionalList.isPresent())
+//        {
+//            Map<String, Integer> map = new HashMap<>();
+//            for(Order order : optionalList.get())
+//            {
+//                for(Burger burger : order.getBurgers())
+//                {
+//                    if(!map.containsKey(burger.getName()))
+//                    {
+//                        map.put(burger.getName(), 1);
+//                    }
+//                    else
+//                    {
+//                        map.put(burger.getName(), map.get(burger.getName() + 1));
+//                    }
+//                }
+//            }
+//            System.err.println(map);
+//            return map;
+//        }
+//        return Collections.emptyMap();
+        Optional<List<String>> optionalList = orderDao.getBurgersFromAllOrders();
         if(optionalList.isPresent())
         {
-            Map<String, Integer> map = new HashMap<>();
-            for(Order order : optionalList.get())
-            {
-                for(Burger burger : order.getBurgers())
-                {
-                    if(!map.containsKey(burger.getName()))
-                    {
-                        map.put(burger.getName(), 1);
-                    }
-                    else
-                    {
-                        map.put(burger.getName(), map.get(burger.getName() + 1));
-                    }
-                }
-            }
-            System.err.println(map);
-            return map;
+            return optionalList.get().stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
         }
         return Collections.emptyMap();
     }

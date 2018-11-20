@@ -1,5 +1,6 @@
 package burgerapp.components.order;
 
+import burgerapp.components.burger.Burger;
 import burgerapp.components.generic.GenericDaoImpl;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
 
 @Repository
 public class OrderDaoImpl extends GenericDaoImpl<Order, Long> implements OrderDao
@@ -23,17 +26,14 @@ public class OrderDaoImpl extends GenericDaoImpl<Order, Long> implements OrderDa
     @Override
     public Optional<Order> find(Long key)
     {
-        Optional<Order> order = Optional.ofNullable(this.entityManager.find(Order.class, key));
+        Optional<Order> order = ofNullable(this.entityManager.find(Order.class, key));
         order.ifPresent(o -> Hibernate.initialize(o.getBurgers()));
         return order;
     }
     
     @Override
-    public Optional<List<Order>> getAllWithBurgers()
+    public Optional<List<String>> getBurgersFromAllOrders()
     {
-        //SELECT N+1 !!!!!!!!!
-        Optional<List<Order>> orders = Optional.ofNullable((List<Order>) entityManager.createQuery("SELECT o FROM Order o").getResultList());
-        orders.ifPresent(ord -> ord.forEach(order -> Hibernate.initialize(order.getBurgers())));
-        return orders;
+        return Optional.ofNullable((entityManager.createQuery("SELECT burger.name FROM Order o join o.burgers as burger", String.class).getResultList()));
     }
 }
