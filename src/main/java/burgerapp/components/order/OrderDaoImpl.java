@@ -27,4 +27,13 @@ public class OrderDaoImpl extends GenericDaoImpl<Order, Long> implements OrderDa
         order.ifPresent(o -> Hibernate.initialize(o.getBurgers()));
         return order;
     }
+    
+    @Override
+    public Optional<List<Order>> getAllWithBurgers()
+    {
+        //SELECT N+1 !!!!!!!!!
+        Optional<List<Order>> orders = Optional.ofNullable((List<Order>) entityManager.createQuery("SELECT o FROM Order o").getResultList());
+        orders.ifPresent(ord -> ord.forEach(order -> Hibernate.initialize(order.getBurgers())));
+        return orders;
+    }
 }

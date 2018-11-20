@@ -11,7 +11,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
 {
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
-    private static final String DEFAULT_ROLE = "ROLE_USER";
+    private static final String DEFAULT_ROLE = "ROLE_ADMIN";
     
     public UserServiceImpl(
         @Qualifier("userDaoImpl") GenericDao<User, Long> genericDao ,PasswordEncoder passwordEncoder)

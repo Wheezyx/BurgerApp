@@ -2,6 +2,7 @@ package burgerapp.components.order;
 
 import burgerapp.components.burger.Burger;
 import burgerapp.components.burger.BurgerService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,22 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/panel")
+@AllArgsConstructor
 public class PanelController
 {
     private final OrderService orderService;
     private final BurgerService burgerService;
-    
-    @Autowired
-    private PanelController(OrderService orderService, BurgerService burgerService)
-    {
-        this.orderService = orderService;
-        this.burgerService = burgerService;
-    }
     
     @GetMapping("/orders")
     public String showOrders(@RequestParam(required = false) OrderStatus status, Model model)
@@ -107,4 +104,10 @@ public class PanelController
         return "redirect:/panel/add-burger";
     }
     
+    @GetMapping("/chart")
+    public String burgerChart(Model model){
+        Map<String, Integer> burgerMapp = orderService.getAllBurgersFromAllOrders();
+        model.addAttribute("burger_map", burgerMapp);
+        return "chart";
+    }
 }

@@ -2,6 +2,8 @@ package burgerapp.components.order;
 
 import burgerapp.components.burger.Burger;
 import burgerapp.components.burger.BurgerService;
+import burgerapp.components.user.User;
+import burgerapp.components.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,17 +58,19 @@ public class OrderController
     }
     
     @PostMapping("/order/create")
-    public String createOrder(@RequestParam String clientName,RedirectAttributes redirectAttributes)
+    public String createOrder(@RequestParam String clientName, RedirectAttributes redirectAttributes)
     {
-        
         Order order = clientOrder.getOrder();
         order.setClientName(clientName);
         boolean status = orderService.add(order);
-        if (status){
+        if(status)
+        {
             clientOrder.clear();
             redirectAttributes.addFlashAttribute("finalizeOrder", "Numer zamówienia:" + order.getId() +
                                                                   " Twój kod odbioru zamówienia to:" + order.getCode());
-        } else{
+        }
+        else
+        {
             redirectAttributes.addFlashAttribute("rdrmessage", "Nie można utworzyć zamówienia, spróbuj za chwilę!");
         }
         return "redirect:/order";

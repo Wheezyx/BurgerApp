@@ -32,7 +32,7 @@ public class Order implements Serializable
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Burger> burgers = new ArrayList<>();
-    @Size(min= 5, max = 20)
+    @Size(min= 3, max = 20)
     private String clientName;
     @NotBlank
     private String code;
