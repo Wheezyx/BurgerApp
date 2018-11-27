@@ -53,7 +53,7 @@ public class OrderController
                                        .mapToDouble(Burger::getPrice)
                                        .sum();
         model.addAttribute("fullAmount", orderPrice);
-        return "order";
+        return "order2";
     }
     
     @PostMapping("/order/create")
