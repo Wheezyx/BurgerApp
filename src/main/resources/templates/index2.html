@@ -9,10 +9,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
           crossorigin="anonymous">
     <link rel="stylesheet" href="css/main2.css" th:href="@{/templates/css/main2.css}">
-    <title>BurgerBar/Weddi</title>
+    <title>BurgerBar</title>
 </head>
 
 <body>
+<div id="mySidenav" class="sidenav">
+    <a class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#" th:href="@{/order}">Zamówienie</a>
+    <a href="#" th:href="@{/orders}">Kolejka zamówień</a>
+    <a href="#" th:href="@{/panel}">Panel</a>
+</div>
 <div class="wrapper">
     <header>
         <h1>BurgerBar</h1>
@@ -20,6 +26,7 @@
             zamówienie!</p>
         <button class="go-order">Przejdź do zamówienia</button>
     </header>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
     <main>
         <h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
         <article class="order" th:remove="all-but-first">
@@ -73,6 +80,7 @@
     </footer>
     <!-- <i class="fas fa-spinner"></i> -->
 </div>
+<script type="text/javascript" src="js/index2.js" th:src="@{/templates/js/index2.js}"></script>
 </body>
 
 </html>

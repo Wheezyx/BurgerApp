@@ -2,8 +2,6 @@ package burgerapp.components.order;
 
 import burgerapp.components.burger.Burger;
 import burgerapp.components.burger.BurgerService;
-import burgerapp.components.user.User;
-import burgerapp.components.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +17,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class OrderController
 {
+    private static final String REDIRECT_MESSAGE = "rdrmessage";
     private ClientOrder clientOrder;
     private BurgerService burgerService;
     private OrderService orderService;
@@ -30,11 +29,11 @@ public class OrderController
         burger.ifPresent(clientOrder::addBurger);
         if(burger.isPresent())
         {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Dodano" + burger.get().getName() + " do zamówienia");
+            redirectAttributes.addFlashAttribute(REDIRECT_MESSAGE, "Dodano" + burger.get().getName() + " do zamówienia");
         }
         else
         {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Nie dodano do zamówienia, spróbuj ponownie!");
+            redirectAttributes.addFlashAttribute(REDIRECT_MESSAGE, "Nie dodano do zamówienia, spróbuj ponownie!");
         }
         return "redirect:/";
     }
@@ -71,7 +70,7 @@ public class OrderController
         }
         else
         {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Nie można utworzyć zamówienia, spróbuj za chwilę!");
+            redirectAttributes.addFlashAttribute(REDIRECT_MESSAGE, "Nie można utworzyć zamówienia, spróbuj za chwilę!");
         }
         return "redirect:/order";
     }
@@ -102,7 +101,7 @@ public class OrderController
             clientOrder.clear();
             message = "Zamówienie wyczyszczone";
         }
-        redirectAttributes.addFlashAttribute("rdrmessage", message);
+        redirectAttributes.addFlashAttribute(REDIRECT_MESSAGE, message);
         return name == null ? "redirect:/" : "redirect:/order";
     }
 }

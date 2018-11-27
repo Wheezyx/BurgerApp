@@ -17,6 +17,8 @@ import java.util.Optional;
 @AllArgsConstructor
 public class BurgerController
 {
+    private static final String REDIRECT_MESSAGE = "rdrmessage";
+    private static final String REDIRECT_MAINPAGE = "redirect:/";
     private BurgerService burgerService;
     
     @GetMapping("/burgers/{name}")
@@ -24,7 +26,7 @@ public class BurgerController
     {
         Optional<Burger> burger = burgerService.findByName(name.replaceAll("-", " "));
         burger.ifPresent(bur -> model.addAttribute("burger", bur));
-        return burger.map(bur -> "burger").orElse("redirect:/");
+        return burger.map(bur -> "burger").orElse(REDIRECT_MAINPAGE);
     }
     
     @PostMapping("/burgers/modify")
@@ -33,17 +35,17 @@ public class BurgerController
         if(result.hasErrors())
         {
             redirectAttributes.addFlashAttribute("rdr", "Niepoprawnie wypełnione pola, spróbuj ponownie.");
-            return "redirect:/";
+            return REDIRECT_MAINPAGE;
         }
         boolean status = burgerService.update(burger);
         if(status)
         {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Successful added burger.");
+            redirectAttributes.addFlashAttribute(REDIRECT_MESSAGE, "Successful added burger.");
         }
         else
         {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Błąd przy zapisie do bazy, nazwa aktualnie zajęta!");
+            redirectAttributes.addFlashAttribute(REDIRECT_MESSAGE, "Błąd przy zapisie do bazy, nazwa aktualnie zajęta!");
         }
-        return "redirect:/";
+        return REDIRECT_MAINPAGE;
     }
 }
