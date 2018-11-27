@@ -201,7 +201,7 @@ header .go-order:hover {
 .order .burger-add i.fa-plus-circle {
   font-size: 2rem;
   text-decoration: none;
-  color: #8c0522;
+  color: crimson;
   cursor: pointer;
 }
 
