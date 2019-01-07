@@ -25,7 +25,7 @@ public abstract class GenericDaoImpl<E, K extends Serializable> implements Gener
         ParameterizedType pt = (ParameterizedType) t;
         daoType = (Class) pt.getActualTypeArguments()[0];
     }
-    
+    //TODO REMAKE @TRANSACTIONAL (CHECK AND REMOVE IF POSSIBLE)
     @Override
     @Transactional
     public void add(E entity)

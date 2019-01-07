@@ -25,6 +25,7 @@ public class OrderDaoImpl extends GenericDaoImpl<Order, Long> implements OrderDa
     @Override
     public Optional<Order> find(Long key)
     {
+        //TODO CHANGE INITIALIZE TO JOIN QUERY
         Optional<Order> order = ofNullable(this.entityManager.find(Order.class, key));
         order.ifPresent(o -> Hibernate.initialize(o.getBurgers()));
         return order;

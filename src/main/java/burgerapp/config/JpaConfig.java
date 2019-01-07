@@ -20,6 +20,7 @@ import java.util.Map;
 @EnableTransactionManagement
 public class JpaConfig
 {
+    //TODO EXPORT HIBERNATE CREDITS TO YML FILE, ADD PRODUCTION AND DEVELOPMENT PROFILES
     @Bean
     public LocalContainerEntityManagerFactoryBean createEMF(JpaVendorAdapter adapter, DataSource ds)
     {
