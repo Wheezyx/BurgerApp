@@ -1,7 +1,6 @@
 package burgerapp.components.order;
 
 import burgerapp.components.generic.GenericDaoImpl;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
@@ -25,15 +24,13 @@ public class OrderDaoImpl extends GenericDaoImpl<Order, Long> implements OrderDa
     @Override
     public Optional<Order> find(Long key)
     {
-        //TODO CHANGE INITIALIZE TO JOIN QUERY
-        Optional<Order> order = ofNullable(this.entityManager.find(Order.class, key));
-        order.ifPresent(o -> Hibernate.initialize(o.getBurgers()));
-        return order;
+        TypedQuery<Order> query = this.entityManager.createQuery("SELECT o FROM Order o join fetch o.burgers WHERE o.id LIKE :id", Order.class);
+        return ofNullable(query.setParameter("id", key).getSingleResult());
     }
     
     @Override
     public Optional<List<String>> getBurgersFromAllOrders()
     {
-        return Optional.ofNullable((entityManager.createQuery("SELECT burger.name FROM Order o join o.burgers as burger", String.class).getResultList()));
+        return ofNullable((entityManager.createQuery("SELECT burger.name FROM Order o join o.burgers as burger", String.class).getResultList()));
     }
 }

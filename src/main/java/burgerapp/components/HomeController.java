@@ -2,8 +2,6 @@ package burgerapp.components;
 
 import burgerapp.components.burger.Burger;
 import burgerapp.components.burger.BurgerService;
-import burgerapp.components.user.User;
-import burgerapp.components.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import java.util.Optional;
 @AllArgsConstructor
 public class HomeController {
     private BurgerService burgerService;
-    private UserService userService;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -28,11 +25,5 @@ public class HomeController {
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
-
-    @GetMapping("add-admin")
-    public String add() {
-        this.userService.addWithDefaultRole(new User("admin", "admin"));
-        return "index2";
     }
 }

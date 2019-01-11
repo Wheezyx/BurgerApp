@@ -1,8 +1,10 @@
 package burgerapp.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -18,17 +20,25 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
+@PropertySource("classpath:/application.properties")
 public class JpaConfig
 {
-    //TODO EXPORT HIBERNATE CREDITS TO YML FILE, ADD PRODUCTION AND DEVELOPMENT PROFILES
+    @Value("${jdbc.driverClassName}") private String driverClassName;
+    @Value("${jdbc.url}") private String url;
+    @Value("${jdbc.username}") private String username;
+    @Value("${jdbc.password}") private String password;
+    
+    @Value("${hibernate.dialect}") private String hibernateDialect;
+    @Value("${hibernate.show_sql}") private String hibernateShowSql;
+    @Value("${hibernate.hbm2ddl.auto}") private String hibernateHbm2ddlAuto;
+    
     @Bean
     public LocalContainerEntityManagerFactoryBean createEMF(JpaVendorAdapter adapter, DataSource ds)
     {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         Map<String, String> properties = new HashMap<>();
-        properties.put("hibernate.hbm2ddl.auto", "update");
-        properties.put("spring.jpa.database-platform", "org.hibernate.dialect.H2Dialect");
-        //properties.put("spring.jpa.database-platform", "org.hibernate.dialect.MySQLDialect");
+        properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
+        properties.put("spring.jpa.database-platform", hibernateDialect);
         properties.put("hibernate.connection.CharSet", "utf-8");
         properties.put("hibernate.connection.characterEncoding", "utf-8");
         properties.put("hibernate.connection.useUnicode", "true");
@@ -43,8 +53,7 @@ public class JpaConfig
     public JpaVendorAdapter createVendorAdapter()
     {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-        adapter.setShowSql(true);
-        //adapter.setDatabase(Database.MYSQL);
+        adapter.setShowSql(Boolean.valueOf(hibernateShowSql));
         adapter.setDatabase(Database.H2);
         return adapter;
     }
@@ -53,12 +62,10 @@ public class JpaConfig
     public DataSource dataSource()
     {
         BasicDataSource ds = new BasicDataSource();
-        ds.setUrl("jdbc:h2:tcp://localhost:9092/~/test");
-        //ds.setUrl("jdbc:mysql://docker-mysql:3306/burgerapp");
-        ds.setUsername("sa");
-        ds.setPassword("");
-        //ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setDriverClassName("org.h2.Driver");
+        ds.setUrl(url);
+        ds.setUsername(username);
+        ds.setPassword(password);
+        ds.setDriverClassName(driverClassName);
         ds.setInitialSize(5);
         return ds;
     }
