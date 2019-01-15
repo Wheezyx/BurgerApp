@@ -13,53 +13,51 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
 @EnableWebSecurity
 @AllArgsConstructor
 @Configuration
 @ComponentScan({"burgerapp.components.user", "burgerapp.config"})
-public class SecurityConfig extends WebSecurityConfigurerAdapter
-{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationFailureHandler customAuthenticationFailureHandler;
     private UserDetailsService userDetailsService;
-    
+
     @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-    {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
-    
+
     @Override
-    protected void configure(HttpSecurity http) throws Exception
-    {
+    protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/panel/users/**").hasAnyRole("ADMIN")
-            .antMatchers("/panel/**").hasAnyRole("ADMIN", "USER")
-            .antMatchers("/**").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin().loginPage("/login.html").failureHandler(customAuthenticationFailureHandler).defaultSuccessUrl("/panel").permitAll()
-            .and()
-            .logout().logoutUrl("/logout").invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/")
-            .and()
-            .rememberMe().tokenValiditySeconds(86400).userDetailsService(userDetailsService)
-            .and()
-            .csrf();
+                .antMatchers("/panel/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").loginProcessingUrl("/login").failureHandler(customAuthenticationFailureHandler).defaultSuccessUrl("/panel").permitAll()
+                .and()
+                .logout().logoutUrl("/logout").invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/")
+                .and()
+                .rememberMe().tokenValiditySeconds(86400).userDetailsService(userDetailsService)
+                .and()
+                .exceptionHandling().accessDeniedPage("/templates/error.html")
+                .and()
+                .csrf();
     }
-    
+
     @Bean
-    public DaoAuthenticationProvider authenticationProvider()
-    {
+    public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider
-            = new DaoAuthenticationProvider();
+                = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-    
+
     @Bean
-    public PasswordEncoder passwordEncoder()
-    {
+    public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }
