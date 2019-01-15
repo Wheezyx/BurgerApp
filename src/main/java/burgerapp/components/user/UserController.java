@@ -42,6 +42,4 @@ public class UserController {
         }
         return "redirect:/panel/users/add";
     }
-
-
 }

@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
     <title>CONTROL PANEL</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="css/panel.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="css/panel.css" th:href="@{/templates/css/panel.css}">
 </head>
 
 <body>
-    <div class="clearfix">
-        <form class="formLog" name="logoutForm" th:action="@{/logout}" method="post">
-            <input type="submit" value="Wyloguj się" />
-        </form>
+<div class="clearfix">
+    <form class="formLog" name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit" value="Wyloguj się"/>
+    </form>
+</div>
+<div class="wrapper clearfix">
+    <a href="" th:href="@{/panel/orders}" class="boxLink"><i class="fas fa-shopping-cart"></i></a>
+    <a href="" th:href="@{/panel/add-burger}" class="boxLink"><i class="fas fa-ad"></i></a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="" th:href="@{/panel/users/add}" class="boxLink"><i class="fas fa-user"></i></a>
+        <a href="" th:href="@{/panel/chart}" class="boxLink"><i class="fas fa-chart-bar"></i></a>
     </div>
-    <div class="wrapper clearfix">
-        <a href="" class="boxLink"><i class="fas fa-shopping-cart"></i></a>
-        <a href="" class="boxLink"><i class="fas fa-user"></i></a>
-        <a href="" class="boxLink"><i class="fas fa-chart-bar"></i></a>
-        <a href="" class="boxLink"><i class="fas fa-ad"></i></a>
-    </div>
+</div>
 </body>
 
 </html>
