@@ -24,7 +24,6 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
         try
         {
             Server.createWebServer().start();
-            Server.createTcpServer().start();
         }
         catch(SQLException e)
         {

@@ -3,7 +3,6 @@ package burgerapp.components;
 import burgerapp.components.burger.Burger;
 import burgerapp.components.burger.BurgerService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import java.util.Optional;
 public class HomeController
 {
     private BurgerService burgerService;
-    private PasswordEncoder passwordEncoder;
     
     @GetMapping("/")
     public String home(Model model)
@@ -31,4 +29,6 @@ public class HomeController
     {
         return "login";
     }
+
+
 }

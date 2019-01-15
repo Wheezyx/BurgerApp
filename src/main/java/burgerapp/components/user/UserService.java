@@ -4,5 +4,5 @@ import burgerapp.components.generic.GenericService;
 
 public interface UserService extends GenericService<User, Long>
 {
-    void addWithDefaultRole(User user);
+    boolean addWithDefaultRole(User user);
 }

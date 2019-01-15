@@ -1,31 +1,40 @@
 body {
     background: url('../img/background.jpg') center;
+    background: black;
     color: black;
 }
-.jumbotron{
+
+.jumbotron {
     background: url('../img/burger_background.gif') center;
     color: Black;
     font-size: 25px;
     font-weight: bold;
 }
-.display-3{
+
+.display-3 {
     font-weight: bold;
 }
+
 .media-body {
     color: white;
-	margin-left: 5px;
+    margin-left: 5px;
 }
-.material-icons {vertical-align:-14%;
-color: white;
-margin-left: 40%;
-font-size: 50px;
+
+.material-icons {
+    vertical-align: -14%;
+    color: white;
+    margin-left: 40%;
+    font-size: 50px;
 }
-.table{
+
+.table {
     color: white;
 }
-th{
+
+th {
     color: white;
 }
-td{
+
+td {
     color: white;
 }

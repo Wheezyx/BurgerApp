@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+</head>
+
+<body>
+<h1>Add user</h1>
+
+<div id="errors" th:if="${(param.error != null) and (param.error[0] == 'true')}">
+    Bad creds
+</div>
+<h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
+
+<div>
+    <form action="#" method="post" th:action="@{/panel/users/add}" th:object="${formUser}" accept-charset="UTF-8">
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email</p>
+        <label>
+            <input type="text" th:field="*{email}" placeholder="Email"/><br>
+        </label>
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password</p>
+        <label>
+            <input type="password" th:field="*{password}" placeholder="Password"/><br>
+        </label>
+        <input type="submit" value="Add"/>
+    </form>
+</div>
+
+
+</body>
+</html>
