@@ -1,32 +1,23 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
 <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
-<h1>Login</h1>
-
-<div id="errors" th:if="${(param.error != null) and (param.error[0] == 'true')}">
-    Bad creds
-</div>
-<form name='f' th:action="@{/login.html}" method='POST'>
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type='text' name='username' value=''></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-        </tr>
-        <tr>
-            <td>Remember Me:</td>
-            <td><input type="checkbox" name="remember-me" /></td>
-        </tr>
-        <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-        </tr>
-    </table>
-</form>
-
+    <div class="wrapper">
+        <form class="form-signin">
+            <h2 class="form-signin-heading">Logowanie</h2>
+            <input type="text" class="form-control" name="username" placeholder="User" required="" autofocus="" />
+            <input type="password" class="form-control" name="password" placeholder="Password" required="" /></br>
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Zapamiętaj
+            </label>
+            <button class="btn" type="submit">Zaloguj</button>
+        </form>
+    </div>
 </body>
+
 </html>
