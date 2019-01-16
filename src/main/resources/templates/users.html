@@ -10,8 +10,14 @@
 <body>
 
 <div th:each="user, index: ${users}">
-    <h2 th:text="${user.email}">Nzawa Burger</h2>
+    <h2 th:text="${user.email}">Nazwa Burger</h2>
+    <a th:href="@{|/panel/users/change-status/${user.id}|}">
+        <div th:switch="${user.enabled}">
+            <p th:case="true"><i class="fas fa-minus-circle"></i></p>
+            <p th:case="false"><i class="fas fa-plus-circle"></i></p>
+        </div>
+    </a>
 </div>
-
+<a th:href="@{/panel/users/add}">Dodaj</a>
 </body>
 </html>

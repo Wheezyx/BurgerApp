@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserService {
@@ -37,4 +39,27 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
         }
     }
 
+    @Override
+    public Optional<List<User>> findWithDefaultRole(String role) {
+        role = "ROLE_" + role.toUpperCase();
+        return userDao.findAllByRole(role);
+    }
+
+    @Override
+    public boolean changeUserEnabledById(String id) {
+        try {
+            Long idl = Long.valueOf(id);
+            Optional<User> optionalUser = this.userDao.find(idl);
+            if (optionalUser.isPresent()) {
+                User user = optionalUser.get();
+                user.setEnabled(!user.isEnabled());
+                this.userDao.update(user);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
