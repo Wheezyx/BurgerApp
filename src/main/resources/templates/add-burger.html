@@ -1,32 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
 <head>
     <meta charset="UTF-8">
     <title>Burgerbar</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/add-burger.css">
 </head>
-<body>
-<h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
 
-<div>
-    <form action="#" method="post" th:action="@{/panel/add-burger}" th:object="${formBurger}" accept-charset="UTF-8">
-        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name</p>
-        <label>
-            <input type="text" th:field="*{name}" placeholder="Name"    /><br>
-        </label>
-        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Name</p>
-        <label>
-            <input type="text" th:field="*{price}" placeholder="Price"/><br>
-        </label>
-        <p th:if="${#fields.hasErrors('shortDescription')}" th:errors="*{shortDescription}">Name</p>
-        <label>
-            <input type="text" th:field="*{shortDescription}" placeholder="Short Desc"/><br>
-        </label>
-        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name</p>
-        <label>
-            <textarea rows="4" cols="50" th:field="*{description}" placeholder="Long desc"></textarea>
-        </label>
-        <input type="submit" value="Zmień"/>
-    </form>
-</div>
+<body>
+    <a class="home" href=""><i class="fas fa-home"></i></a>
+    <h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
+    <div class="mask"></div>
+    <div class="wrapper">
+        <form class="form-burger" action="#" method="post" th:action="@{/panel/add-burger}" th:object="${formBurger}"
+            accept-charset="UTF-8">
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name</p>
+            <h5 th:if="${#fields.hasErrors('description')}" th:errors="*{description}">name</h5></br>
+            <label class="labe">
+                <input type="text" th:field="*{name}" placeholder="Name" /><br>
+            </label class="labe">
+            <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Name</p>
+            <h5 th:if="${#fields.hasErrors('description')}" th:errors="*{description}">name</h5></br>
+            <label>
+                <input type="text" th:field="*{price}" placeholder="Price" /><br>
+            </label>
+            <p th:if="${#fields.hasErrors('shortDescription')}" th:errors="*{shortDescription}">Name</p>
+            <h5 th:if="${#fields.hasErrors('description')}" th:errors="*{description}">name</h5></br>
+            <label>
+                <input type="text" th:field="*{shortDescription}" placeholder="Short Desc" /><br>
+            </label>
+            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name</p>
+            <h5 th:if="${#fields.hasErrors('description')}" th:errors="*{description}">name</h5></br>
+            <label>
+                <textarea rows="4" cols="50" th:field="*{description}" placeholder="Long desc"></textarea>
+            </label>
+            <input class="btn" type="submit" value="Zmień" />
+        </form>
+    </div>
 </body>
+
 </html>

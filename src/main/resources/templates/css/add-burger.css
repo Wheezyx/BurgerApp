@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-image: url(/img/zamiBuger.jpg);
+  background-position: center;
+}
+
+.home {
+  display: block;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #65B7F3;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  z-index: 3;
+  -webkit-transition: .4s linear;
+  transition: .4s linear;
+}
+
+.home:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+h3 {
+  display: block;
+  width: 45%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin: 20px auto 0 auto;
+  background-color: #eee;
+  z-index: 999999999;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.wrapper {
+  position: relative;
+  width: 50%;
+  height: 500px;
+  margin: 70px auto auto;
+}
+
+.wrapper .form-burger {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 90%;
+  height: 110%;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 2;
+  text-align: center;
+}
+
+.wrapper .form-burger p {
+  display: block;
+  margin: 5px 75% 0 0;
+  font-size: 20px;
+  color: #333;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
+
+.wrapper .form-burger h5 {
+  display: block;
+  margin: 0 75% 0 0;
+}
+
+.wrapper .form-burger input {
+  width: 80%;
+  height: 40px;
+  -webkit-transition: .4s linear;
+  transition: .4s linear;
+}
+
+.wrapper .form-burger input:focus {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.wrapper .form-burger textarea {
+  margin-top: 10px;
+  width: 80%;
+  -webkit-transition: .4s linear;
+  transition: .4s linear;
+}
+
+.wrapper .form-burger textarea:focus {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.wrapper .form-burger .btn {
+  margin-top: 12px;
+  background-color: #65B7F3;
+  height: 50px;
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  width: 40%;
+}
+/*# sourceMappingURL=add-burger.css.map */
