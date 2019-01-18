@@ -22,6 +22,14 @@ public class OrderDaoImpl extends GenericDaoImpl<Order, Long> implements OrderDa
     }
     
     @Override
+    public Optional<List<Order>> findAllWithoutStatus(OrderStatus orderStatus)
+    {
+        TypedQuery<Order> query = this.entityManager.createQuery("SELECT o FROM Order o WHERE o.status NOT LIKE :orderStatus", Order.class);
+        List<Order> list = query.setParameter("orderStatus", orderStatus).getResultList();
+        return !list.isEmpty() ? Optional.of(list) : Optional.empty();
+    }
+    
+    @Override
     public Optional<Order> find(Long key)
     {
         TypedQuery<Order> query = this.entityManager.createQuery("SELECT o FROM Order o join fetch o.burgers WHERE o.id LIKE :id", Order.class);

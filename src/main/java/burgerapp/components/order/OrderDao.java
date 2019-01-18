@@ -10,4 +10,6 @@ public interface OrderDao extends GenericDao<Order, Long>
     Optional<List<Order>> findAllByOrderStatus(OrderStatus status);
     
     Optional<List<String>> getBurgersFromAllOrders();
+    
+    Optional<List<Order>> findAllWithoutStatus(OrderStatus orderStatus);
 }

@@ -11,4 +11,6 @@ public interface OrderService extends GenericService<Order, Long>
     Optional<List<Order>> findAllByOrderStatus(OrderStatus status);
     
     Map<String, Long> getAllBurgersFromAllOrders();
+    
+    Optional<List<Order>> findAllWithoutStatus(OrderStatus orderStatus);
 }

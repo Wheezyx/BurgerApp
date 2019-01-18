@@ -17,8 +17,8 @@ public class OrderRestController
     @GetMapping("/api/orders")
     public List<Order> getOrderList()
     {
-        Optional<List<Order>> optionalList = this.orderService.getAll();
-    
+        Optional<List<Order>> optionalList = this.orderService.findAllWithoutStatus(OrderStatus.DELIVERED);
+        
         return optionalList.orElse(Collections.emptyList());
     }
 }

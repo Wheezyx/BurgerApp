@@ -1,11 +1,14 @@
 package burgerapp.components.user;
 
-
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -24,7 +27,6 @@ public class UserController {
 
     @GetMapping("/add")
     public String addUser(Model model) {
-        //np tu.
         model.addAttribute("formUser", new User());
         return "add-user";
 
@@ -38,9 +40,9 @@ public class UserController {
 
         boolean status = userService.addWithDefaultRole(formUser);
         if (status) {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Success, user added.");
+            redirectAttributes.addFlashAttribute("rdrmessage", "Sukces, dodano nowego użytkownika");
         } else {
-            redirectAttributes.addFlashAttribute("rdrmessage", "Error with creating new user: Name already used");
+            redirectAttributes.addFlashAttribute("rdrmessage", "Błąd podczas tworzenia nowego użytkonika. Nazwa jest zajęta.");
         }
         return "redirect:/panel/users/add";
     }
@@ -53,8 +55,10 @@ public class UserController {
     }
 
     @GetMapping("/change-status/{id}")
-    public String changeUserEnabled(@PathVariable String id) {
+    public String changeUserEnabled(@PathVariable String id, RedirectAttributes redirectAttributes)
+    {
         boolean status = this.userService.changeUserEnabledById(id);
+        redirectAttributes.addFlashAttribute("rdrmessage", "Pomyślnie zmieniono status.");
         return "redirect:/panel/users";
     }
 

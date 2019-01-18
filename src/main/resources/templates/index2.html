@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
           crossorigin="anonymous">
     <link rel="stylesheet" href="css/main2.css" th:href="@{/templates/css/main2.css}">
+    <link rel="stylesheet" href="css/main2.css" th:href="@{/templates/css/mainsidenav.css}">
     <title>BurgerBar</title>
 </head>
 
@@ -26,7 +27,7 @@
             zamówienie!</p>
         <button class="go-order">Przejdź do zamówienia</button>
     </header>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+    <span class="navbarclick" onclick="openNav()">&#9776; open</span>
     <main>
         <h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
         <article class="order" th:remove="all-but-first">
@@ -75,7 +76,7 @@
     </main>
     <footer>
         <h1>
-            Mateusz Wedeł &copy; 2018r.
+            BurgerBar Team &copy; 2018r.
         </h1>
     </footer>
     <!-- <i class="fas fa-spinner"></i> -->
