@@ -1,6 +1,7 @@
 document.getElementById('getData').addEventListener("click", getData);
-$( document ).ready(getData());
+$(document).ready(getData());
 setInterval(getData, 7000);
+
 function getData()
 {
     $.ajax({
@@ -13,7 +14,7 @@ function getData()
             var order_data = '';
             $("#order_table").find("tr:gt(0)").remove();
             $.each(response, function (key, value) {
-                order_data += '<tr>';
+                order_data += '<tr style="color: green;">';
                 order_data += '<td>' + value.id + '</td>';
                 order_data += '<td>' + value.clientName + '</td>';
                 order_data += '<td>' + value.status + '</td>';

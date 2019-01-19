@@ -15,7 +15,6 @@ import java.util.Optional;
 public class HomeController
 {
     private BurgerService burgerService;
-    
     @GetMapping("/")
     public String home(Model model)
     {
@@ -29,6 +28,5 @@ public class HomeController
     {
         return "login";
     }
-
-
+    
 }
