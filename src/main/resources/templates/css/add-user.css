@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-image: url(../img/welcome.jpg);
+}
+
+.bg {
+  position: absolute;
+  left: 100%;
+  top: 100%;
+  background-color: #000;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+}
+
+.wrapper {
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: 100px auto 0 auto;
+  padding: 20px 0;
+}
+
+.wrapper .info {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  color: #65B7F3;
+}
+
+.form11 {
+  padding: 10px 0;
+}
+
+form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+form input {
+  width: 90%;
+  height: 40px;
+}
+
+form .headers {
+  margin: 9px 0;
+  color: #65B7F3;
+}
+
+form .btn {
+  display: block;
+  width: 30%;
+  margin-top: 30px;
+  background-color: #65B7F3;
+  border: none;
+  color: #fff;
+}
+/*# sourceMappingURL=add-user.css.map */

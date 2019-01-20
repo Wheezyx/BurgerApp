@@ -1,29 +1,37 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:500" rel="stylesheet">
+    <link rel="stylesheet" href="css/add-user.css">
 </head>
 
 <body>
-<h1>Add user</h1>
+    <div class="bg"></div>
+    <div class="wrapper">
+        <div class="info">
+            <h1>Add user</h1>
 
-<div id="errors" th:if="${(param.error != null) and (param.error[0] == 'true')}">
-    Bad creds
-</div>
-<h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
+            <div id="errors" th:if="${(param.error != null) and (param.error[0] == 'true')}">
+                Bad creds
+            </div>
+            <h3 th:if="${rdrmessage}" th:text="${rdrmessage}"></h3>
 
-<div>
-    <form action="#" method="post" th:action="@{/panel/users/add}" th:object="${formUser}" accept-charset="UTF-8">
-        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email</p>
-        <label>
-            <input type="text" th:field="*{email}" placeholder="Email"/><br>
-        </label>
-        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password</p>
-        <label>
-            <input type="password" th:field="*{password}" placeholder="Password"/><br>
-        </label>
-        <input type="submit" value="Add"/>
-    </form>
-</div>
+        </div>
 
-
+        <div class="form11">
+            <form action="#" method="post" th:action="@{/panel/users/add}" th:object="${formUser}" accept-charset="UTF-8">
+                <p class="headers" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email</p>
+                <label>
+                    <input type="text" th:field="*{email}" placeholder="Email" /><br>
+                </label>
+                <p class="headers" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password</p>
+                <label>
+                    <input type="password" th:field="*{password}" placeholder="Password" /><br>
+                </label>
+                <input class="btn" type="submit" value="Add" />
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
